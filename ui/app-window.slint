@@ -1,0 +1,73 @@
+import { Button, VerticalBox, HorizontalBox, LineEdit } from "std-widgets.slint";
+
+export component AppWindow inherits Window {
+    title: "Slint Prototyper";
+    icon: @image-url("../assets/256.png");
+    background: @linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    width: 500px;
+    height: 400px;
+
+    // Custom "CSS-like" properties for the card
+    in-out property <bool> is-active: false;
+
+    VerticalBox {
+        padding: 30px;
+        spacing: 20px;
+
+        // Header Section
+        Text {
+            text: "Developer Dashboard";
+            font-size: 24px;
+            font-weight: 700;
+            color: #e94560;
+            horizontal-alignment: center;
+        }
+
+        // The "Card" Container
+        Rectangle {
+            background: is-active ? #0f3460 : #16213e;
+            border-radius: 12px;
+            border-width: 2px;
+            border-color: active-area.has-hover ? #e94560 : #4e4e6a;
+            height: 120px;
+
+            // Animation/Transition (The CSS "transition" equivalent)
+            animate background { duration: 250ms; easing: ease-in-out; }
+            animate border-color { duration: 150ms; }
+
+            active-area := TouchArea {
+                clicked => { is-active = !is-active; }
+            }
+
+            VerticalBox {
+                alignment: center;
+                Text {
+                    text: is-active ? "System Online" : "System Offline";
+                    color: white;
+                    font-size: 18px;
+                    horizontal-alignment: center;
+                }
+                Text {
+                    text: "Click card to toggle status";
+                    color: #9595b7;
+                    font-size: 12px;
+                    horizontal-alignment: center;
+                }
+            }
+        }
+
+        // Input Section
+        HorizontalBox {
+            spacing: 10px;
+            LineEdit {
+                placeholder-text: "Enter command...";
+                height: 35px;
+            }
+            Button {
+                text: "Execute";
+                primary: true;
+                height: 35px;
+            }
+        }
+    }
+}
