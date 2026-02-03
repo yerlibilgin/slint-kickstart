@@ -1,12 +1,15 @@
 #define IDI_ICON1 101
 
+#define STR_HELPER(x) #x
+#define STR(x) STR_HELPER(x)
+
 // The Icon
 IDI_ICON1 ICON "favicon.ico"
 
 // Version Information
 1 VERSIONINFO
- FILEVERSION VERSION_MAJOR, VERSION_MINOR, 0, 0
- PRODUCTVERSION VERSION_MAJOR, VERSION_MINOR, 0, 0
+ FILEVERSION RC_VERSION_MAJOR, RC_VERSION_MINOR, RC_VERSION_PATCH, 0
+ PRODUCTVERSION RC_VERSION_MAJOR, RC_VERSION_MINOR, RC_VERSION_PATCH, 0
  FILEFLAGSMASK 0x3fL
  FILEFLAGS 0x0L
  FILEOS 0x40004L
@@ -17,14 +20,14 @@ BEGIN
     BEGIN
         BLOCK "040904b0" // US English, Unicode
         BEGIN
+            VALUE "FileDescription",  STR(RC_PROJECT_NAME)
+            VALUE "FileVersion",      STR(RC_VERSION_STRING)
+            VALUE "InternalName",     STR(RC_PROJECT_NAME)
+            VALUE "OriginalFilename", STR(RC_FILE_NAME)
+            VALUE "ProductName",      STR(RC_PROJECT_NAME)
+            VALUE "ProductVersion",   STR(RC_VERSION_STRING)
             VALUE "CompanyName",      "Yerlibilgin"
-            VALUE "FileDescription",  "SlintTest"
-            VALUE "FileVersion",      "1.0.0"
-            VALUE "InternalName",     "SlintApp"
-            VALUE "LegalCopyright",   "Copyright (C) 2026"
-            VALUE "OriginalFilename", "slinttest.exe"
-            VALUE "ProductName",      "SlintTest"
-            VALUE "ProductVersion",   "1.0.0"
+            VALUE "LegalCopyright",   "Copyright (C) 2025"
         END
     END
     BLOCK "VarFileInfo"
